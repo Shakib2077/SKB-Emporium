@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ !empty($meta_title) ? $meta_title : '' }}</title>
-    
+
     @if(!empty($meta_description))
     <meta name="description" content="{{ $meta_description }}">
     @endif
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ url('assets/css/plugins/magnific-popup/magnific-popup.css') }}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}">
+    @yield('style')
 </head>
 
 <body>
@@ -120,7 +121,7 @@
         </div>
     </div>
 
-    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    <!-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="row no-gutters bg-white newsletter-popup-content">
@@ -149,7 +150,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Plugins JS File -->
     <script src="{{ url('assets/js/jquery.min.js') }}"></script>
     <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -158,8 +159,11 @@
     <script src="{{ url('assets/js/superfish.min.js') }}"></script>
     <script src="{{ url('assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ url('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    @yield('script')
     <!-- Main JS File -->
     <script src="{{ url('assets/js/main.js') }}"></script>
+
+
 </body>
 
 </html>

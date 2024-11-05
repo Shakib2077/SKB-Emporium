@@ -9,8 +9,12 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\DiscountCodeController;
+use App\Http\Controllers\Admin\ShippingChargeController;
+
 use App\Http\Controllers\ProductController as ProductFront;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,11 +83,36 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/product/image_delete/{id}', [ProductController::class, 'image_delete']);
     Route::post('admin/product_image_sortable', [ProductController::class, 'product_image_sortable']);
 
+    Route::get('admin/discount_code/list', [DiscountCodeController::class, 'list']);
+    Route::get('admin/discount_code/add', [DiscountCodeController::class, 'add']);
+    Route::post('admin/discount_code/insert', [DiscountCodeController::class, 'insert']);
+    Route::get('admin/discount_code/edit/{id}', [DiscountCodeController::class, 'edit']);
+    Route::post('admin/discount_code/edit/{id}', [DiscountCodeController::class, 'update']);
+    Route::get('admin/discount_code/delete/{id}', [DiscountCodeController::class, 'delete']);
+
+    Route::get('admin/shipping_charge/list', [ShippingChargeController::class, 'list']);
+    Route::get('admin/shipping_charge/add', [ShippingChargeController::class, 'add']);
+    Route::post('admin/shipping_charge/insert', [ShippingChargeController::class, 'insert']);
+    Route::get('admin/shipping_charge/edit/{id}', [ShippingChargeController::class, 'edit']);
+    Route::post('admin/shipping_charge/edit/{id}', [ShippingChargeController::class, 'update']);
+    Route::get('admin/shipping_charge/delete/{id}', [ShippingChargeController::class, 'delete']);
 
 
 });
 
 Route::get('/', [HomeController::class, 'home']);
+
+Route::get('cart', [PaymentController::class, 'cart']);
+Route::post('update_cart', [PaymentController::class, 'update_cart']);
+Route::get('cart/delete/{id}', [PaymentController::class, 'cart_delete']);
+
+Route::get('checkout', [PaymentController::class, 'checkout']);
+Route::post('checkout/apply_discount_code', [PaymentController::class, 'apply_discount_code']);
+
+Route::post('product/add-to-cart', [PaymentController::class, 'add_to_cart']);
+
+Route::get('search', [ProductFront::class, 'getProductSearch']);
+Route::post('get_filter_product_ajax', [ProductFront::class, 'getFilterProductAjax']);
 Route::get('{category?}/{subcategory?}', [ProductFront::class, 'getCategory']);
 
 
